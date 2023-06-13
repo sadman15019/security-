@@ -4,9 +4,18 @@ using namespace std;
 int main()
 {
     ll n,m,i,j,k;
-    string s;
-    cin>>n>>m;
+    string s,key;
+    vector< pair <char,ll > >v;
     cin>>s;
+    cin>>key;
+    for(i=0; i<key.size(); i++)
+    {
+        v.push_back({key[i],i});
+    }
+    sort(v.begin(),v.end());
+    n=(s.size()/key.size())+1;
+    m=key.size();
+    cout<<n<<" "<<m<<endl;
     char arr[n][m];
     for(i=0; i<n; i++)
     {
@@ -27,15 +36,18 @@ int main()
         }
     }
     string c="";
-    for(i=0; i<n; i++)
+    k=v[0].second;
+    for(k=0; k<m; k++)
     {
-        for(j=0; j<m; j++)
+        i=v[k].second;
+        for(j=0; j<n; j++)
         {
             c+=arr[j][i];
         }
     }
-    i=j=0;
-    cout<<c<<endl;
+    i=0;
+    j=v[0].second;
+    ll p=0;
     for(k=0; k<c.size(); k++)
     {
         arr[i][j]=c[k];
@@ -43,11 +55,12 @@ int main()
         if(i==n)
         {
             i=0;
-            j++;
+            p++;
+            j=v[p].second;
         }
     }
     string msg="";
-     for(i=0; i<n; i++)
+    for(i=0; i<n; i++)
     {
         for(j=0; j<m; j++)
         {
