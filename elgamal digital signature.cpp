@@ -68,7 +68,6 @@ int main()
             break;
         }
     }
-    cout<<g<<endl;
     s1=power(g,k,p);
     tmp1=(m-pr_key*s1)%(p-1);
     tmp2=modinv(k,p-1);
